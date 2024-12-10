@@ -15,6 +15,12 @@ run/main_scene="res://tweening/graph.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=2000
+window/size/viewport_height=3000
+window/stretch/mode="viewport"
+
 [rendering]
 
 environment/defaults/default_clear_color=Color(0.109804, 0.109804, 0.109804, 1)

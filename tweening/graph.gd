@@ -9,18 +9,19 @@ const TRANSITIONS = [
 const EASINGS = ["IN", "OUT", "IN_OUT", "OUT_IN"]
 
 const EASING_TO_COLOR = {
-	Tween.EASE_IN: Color(0.35, 0.85, 0.55, 0.85),
-	Tween.EASE_OUT: Color(0.85, 0.45, 0.35, 0.85),
-	Tween.EASE_IN_OUT: Color(0.35, 0.25, 0.95, 0.85),
-	Tween.EASE_OUT_IN: Color(0.95, 0.45, 0.85, 0.85),
+	Tween.EASE_IN: Color(0.35, 0.85, 0.55, 1),
+	Tween.EASE_OUT: Color(0.85, 0.45, 0.35, 1),
+	Tween.EASE_IN_OUT: Color(0.35, 0.25, 0.95, 1),
+	Tween.EASE_OUT_IN: Color(0.95, 0.45, 0.85, 1),
 }
 
-const CELL_SIZE = Vector2(200, 200)
-const OFFSET = Vector2(30, 70)
-const INITIAL_OFFSET = Vector2(30, 130)
-const EXTRA_OFFSET = [Vector2(0, 0), Vector2(0, 35), Vector2(0, 0)]
+const SCALE = 2.0
+const CELL_SIZE = Vector2(200, 200) * SCALE
+const OFFSET = Vector2(30, 70) * SCALE
+const INITIAL_OFFSET = Vector2(30, 130) * SCALE
+const EXTRA_OFFSET = [Vector2(0, 0) * SCALE, Vector2(0, 35) * SCALE, Vector2(0, 0) * SCALE]
 
-const SAMPLING_POINTS = 100
+const SAMPLING_POINTS = 500
 
 const TITLE_COLOR = Color("46a1e0")
 
@@ -43,14 +44,17 @@ func _draw_legend(at):
 		var easing_name = "EASE_" + EASINGS[i]
 		var easing = tween.get(easing_name) 
 		var color = EASING_TO_COLOR[easing]
-		draw_rect(Rect2(at, Vector2.ONE * 20), color)
-		draw_string(font, at + Vector2(26, 17), easing_name, HORIZONTAL_ALIGNMENT_LEFT, -1, 20, color)
-		at += Vector2(36 + 14 * len(easing_name), 0)
-
+		draw_rect(Rect2(at, Vector2.ONE * 20 * SCALE), color)
+		draw_text(at + Vector2(26, 17) * SCALE, easing_name, 20, color)
+		at += Vector2(36 + 14 * len(easing_name), 0) * SCALE
+		
+func draw_text(pos, text, size=16, color=Color.WHITE):
+	draw_string(font, pos, text, HORIZONTAL_ALIGNMENT_LEFT, -1, size * SCALE, color)
+		
 func _draw():
 	
-	draw_string(font, Vector2(30, 60), "Godot Tweening Cheatsheet", HORIZONTAL_ALIGNMENT_LEFT, -1, 32, TITLE_COLOR)
-	draw_string(font, Vector2(32, 78), "drawn using Godot v4.3.stable", HORIZONTAL_ALIGNMENT_LEFT, -1, 14, TITLE_COLOR.darkened(.5))
+	draw_text(Vector2(30, 60) * SCALE, "Godot Tweening Cheatsheet", 32, TITLE_COLOR)
+	draw_text(Vector2(32, 78) * SCALE, "drawn using Godot v4.3.stable", 14, TITLE_COLOR.darkened(.5))
 	
 	_draw_legend(get_top_left(0, 1) + Vector2(0, 10  - OFFSET.y))
 	
@@ -72,10 +76,10 @@ func _draw():
 					points.append(p1)
 				
 				for p in len(points)-1:
-					draw_line(points[p], points[p+1], EASING_TO_COLOR[easing], 1, true)
+					draw_line(points[p], points[p+1], EASING_TO_COLOR[easing], 2, true)
 			
-				draw_string(ThemeDB.fallback_font, top_left + Vector2(4, 14), transition_suffix)
+				draw_text(top_left + Vector2(4, 14) * SCALE, transition_suffix, 18)
 			
-	var credits_at = get_top_left(1, 2) + CELL_SIZE + Vector2(30, 25)
+	var credits_at = get_top_left(1, 2) + CELL_SIZE + Vector2(30, 25) * SCALE
 	var credits = "initial version by u/wandomPewlin, updated by github.com/LiquidFun"
-	draw_string(font, credits_at, credits, HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color.BLACK.lightened(.2))
+	draw_text(credits_at, credits, 12, Color.BLACK.lightened(.2))
