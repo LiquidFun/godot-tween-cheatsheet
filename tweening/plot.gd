@@ -1,7 +1,7 @@
 extends Control
 
 const TRANSITIONS = [
-	["BACK", "SPRING", "BOUNCE", "ELASTIC"],
+	["BOUNCE", "BACK", "SPRING", "ELASTIC"],
 	["LINEAR", "SINE", "QUAD", "CIRC"], 
 	["CUBIC", "QUART", "QUINT", "EXPO"],
 ]
@@ -65,7 +65,6 @@ func _draw():
 			for easing_suffix in EASINGS:
 				var easing = tween.get("EASE_" + easing_suffix)
 				var top_left = get_top_left(x, y)
-				draw_rect(Rect2(top_left, CELL_SIZE), Color(0, 0, 0, 0), false, 1)
 				
 				var points = []
 				for x1 in SAMPLING_POINTS:

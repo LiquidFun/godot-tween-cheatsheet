@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://hx2gtiuglym5"]
+
+[ext_resource type="Script" path="res://tweening/animation.gd" id="1_ysd3s"]
+
+[node name="Animation" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ysd3s")
