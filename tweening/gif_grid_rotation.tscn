@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://b0617sygegr8o"]
-
-[ext_resource type="Script" uid="uid://blrosri7cg5ic" path="res://tweening/gif_grid.gd" id="1_script"]
-
-[node name="GifGridRotation" type="Control" unique_id=364680944]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_script")

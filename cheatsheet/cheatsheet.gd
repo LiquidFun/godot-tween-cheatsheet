@@ -54,9 +54,9 @@ func draw_text(pos, text, size=16, color=Color.WHITE):
 func _draw():
 	
 	draw_text(Vector2(30, 60) * SCALE, "Godot Tweening Cheatsheet", 32, TITLE_COLOR)
-	draw_text(Vector2(32, 78) * SCALE, "drawn using Godot v4.3.stable", 14, TITLE_COLOR.darkened(.5))
+	draw_text(Vector2(32, 78) * SCALE, "Godot v%s" % Engine.get_version_info().string, 14, TITLE_COLOR.darkened(.5))
 	
-	_draw_legend(get_top_left(0, 1) + Vector2(0, 10  - OFFSET.y))
+	_draw_legend(get_top_left(0, 1) + Vector2(0, 30  - OFFSET.y))
 	
 	for y in TRANSITIONS.size():
 		for x in TRANSITIONS[y].size():

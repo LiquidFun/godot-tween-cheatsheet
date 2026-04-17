@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bhblk6m5y2fkk"]
+
+[ext_resource type="Script" uid="uid://dysms6gwvbrf6" path="res://cheatsheet/cheatsheet.gd" id="1_gh420"]
+
+[node name="Cheatsheet" type="Control" unique_id=112805936]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_gh420")

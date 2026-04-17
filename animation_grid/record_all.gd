@@ -1,6 +1,6 @@
 extends Node
 
-const GRID_SCENE = preload("res://tweening/gif_grid_rotation.tscn")
+const GRID_SCENE = preload("res://animation_grid/animation_grid.tscn")
 
 var _jobs := []
 var _current := 0

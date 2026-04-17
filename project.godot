@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="godot-tween-cheatsheet"
-run/main_scene="res://tweening/record_all.tscn"
+run/main_scene="res://animation_grid/record_all.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

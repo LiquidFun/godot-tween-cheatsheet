@@ -26,7 +26,7 @@ const EASING_TO_COLOR = {
 }
 
 const TITLE_COLOR = Color("46a1e0")
-const GHOST_SCENE = preload("res://tweening/ghost.tscn")
+const GHOST_SCENE = preload("res://entities/ghost.tscn")
 const GHOST_FILL = 0.55
 
 const TWEEN_DURATION = 1.0
@@ -140,6 +140,8 @@ func _create_tween(ghost: Node2D, trans: int, ease_val: int):
 func _draw():
 	var prop_name: String = Property.keys()[tween_property].capitalize()
 	draw_string(font, Vector2(20, 32) * ui_scale, "Tween Cheatsheet: %s" % prop_name, HORIZONTAL_ALIGNMENT_LEFT, -1, 20 * ui_scale, TITLE_COLOR)
+	var version: String = Engine.get_version_info().string
+	draw_string(font, Vector2(22, 44) * ui_scale, "drawn using Godot v%s" % version, HORIZONTAL_ALIGNMENT_LEFT, -1, 8 * ui_scale, TITLE_COLOR.darkened(.5))
 
 	for col in EASINGS.size():
 		var ease_name: String = "EASE_" + EASINGS[col]
