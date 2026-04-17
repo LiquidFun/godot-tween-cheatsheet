@@ -2,7 +2,8 @@
 .godot/
 /android/
 cheatsheet.png.import
-output/modulation
-output/position
-output/rotation
-output/scale
+output
+!output/modulation.webp
+!output/position.webp
+!output/rotation.webp
+!output/scale.webp
