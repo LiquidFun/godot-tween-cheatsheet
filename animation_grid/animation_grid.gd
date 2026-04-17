@@ -59,7 +59,7 @@ func _ready():
 	var prop_name: String = Property.keys()[tween_property].to_lower()
 	_output_dir = "res://output/%s" % prop_name
 	_loop_duration = (TWEEN_DURATION + HOLD_DURATION) * 2
-	_crop_size = _cell_origin(3, 11) + cell_size + Vector2(10, 15) * ui_scale
+	_crop_size = _cell_origin(3, 11) + cell_size + Vector2(cell_gap.x / 2 + 5 * ui_scale, 25 * ui_scale)
 
 	_setup_ghosts()
 
@@ -140,23 +140,25 @@ func _create_tween(ghost: Node2D, trans: int, ease_val: int):
 func _draw():
 	var prop_name: String = Property.keys()[tween_property].capitalize()
 	draw_string(font, Vector2(20, 32) * ui_scale, "Tween Cheatsheet: %s" % prop_name, HORIZONTAL_ALIGNMENT_LEFT, -1, 20 * ui_scale, TITLE_COLOR)
-	var version: String = Engine.get_version_info().string
-	draw_string(font, Vector2(22, 44) * ui_scale, "drawn using Godot v%s" % version, HORIZONTAL_ALIGNMENT_LEFT, -1, 8 * ui_scale, TITLE_COLOR.darkened(.5))
 
+	var label_col_width := cell_size.x + cell_gap.x
 	for col in EASINGS.size():
 		var ease_name: String = "EASE_" + EASINGS[col]
 		var ease_val: int = _ref_tween.get("EASE_" + EASINGS[col])
-		var x_pos := _cell_origin(col, 0).x
+		var x_pos := _cell_origin(col, 0).x - cell_gap.x / 2
 		var y_pos := _cell_origin(col, 0).y - 8 * ui_scale
-		draw_string(font, Vector2(x_pos, y_pos), ease_name, HORIZONTAL_ALIGNMENT_CENTER, cell_size.x, 10 * ui_scale, EASING_TO_COLOR[ease_val])
+		draw_string(font, Vector2(x_pos, y_pos), ease_name, HORIZONTAL_ALIGNMENT_CENTER, label_col_width, 10 * ui_scale, EASING_TO_COLOR[ease_val])
 
 	var label_width := grid_offset.x - 8 * ui_scale
 	for row in TRANSITIONS.size():
 		var y_pos := _cell_origin(0, row).y + cell_size.y / 2 + 4 * ui_scale
 		draw_string(font, Vector2(0, y_pos), TRANSITIONS[row], HORIZONTAL_ALIGNMENT_RIGHT, label_width, 12 * ui_scale, Color.WHITE)
 
-	var credits_at := _cell_origin(1, 11) + cell_size + Vector2(15, 15) * ui_scale
-	draw_string(font, credits_at, "github.com/LiquidFun", HORIZONTAL_ALIGNMENT_LEFT, -1, 9 * ui_scale, Color.BLACK.lightened(.2))
+	var bottom_y := _cell_origin(0, 11).y + cell_size.y + 10 * ui_scale
+	var version: String = Engine.get_version_info().string
+	draw_string(font, Vector2(20 * ui_scale, bottom_y), "Drawn using Godot v%s" % version, HORIZONTAL_ALIGNMENT_LEFT, -1, 8 * ui_scale, Color.BLACK.lightened(.2))
+	var right_edge := _crop_size.x
+	draw_string(font, Vector2(0, bottom_y), "github.com/LiquidFun", HORIZONTAL_ALIGNMENT_RIGHT, right_edge, 8 * ui_scale, Color.BLACK.lightened(.2))
 
 func _process(delta):
 	if not _recording:
