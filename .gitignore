@@ -2,3 +2,7 @@
 .godot/
 /android/
 cheatsheet.png.import
+output/modulation
+output/position
+output/rotation
+output/scale
